@@ -42,7 +42,7 @@ selected_product = st.selectbox('Select a product:', filtered_products)
 
 if selected_product:
     with st.spinner('Calculating recommendations...'):
-        time.sleep(5)
+        time.sleep(3)
         similarities = item_similarity_df[selected_product]
         top_similar = similarities.drop(index=selected_product).sort_values(ascending=False).head(5)
 
@@ -50,3 +50,4 @@ if selected_product:
         st.write(f"Top 5 recommendations for {selected_product}:")
         for i, (product, similarity) in enumerate(top_similar.items(), 1):
             st.write(f"{i}. {product} (Similarity: {similarity:.2f})")
+
