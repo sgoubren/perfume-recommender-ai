@@ -9,8 +9,8 @@ from sklearn.metrics.pairwise import cosine_similarity
 ulta_filtered = pd.read_csv('ulta_filtered.csv')
 
 # Extract  brands and products
-brands = ulta_filtered['Brand'].unique()
-products = ulta_filtered['Product_Name'].unique()
+brands = np.sort(ulta_filtered['Brand'].unique())
+products = np.sort(ulta_filtered['Product_Name'].unique())
 
 # Building the pivot table for SVD
 rating_crosstab = ulta_filtered.pivot_table(values='rating', index='user_loc', columns='Product_Name', fill_value=0)
@@ -32,7 +32,9 @@ item_similarity_df = pd.DataFrame(item_similarity_matrix,
                                   columns=perfume_ids)
 
 # Streamlit UI
-st.title("Perfume Recommendation System")
+st.title('Perfume Recommendation System')
+st.subheader('Based on women perfumes and user ratings at ULTA')
+st.header('If you love:')
 
 # dropdown lists for user to select brand and product
 selected_brand = st.selectbox('Select a brand:', brands)
@@ -41,13 +43,12 @@ selected_product = st.selectbox('Select a product:', filtered_products)
 
 
 if selected_product:
-    with st.spinner('Calculating recommendations...'):
-        time.sleep(3)
+    with st.spinner('Personalizing your recommendations...'):
+        time.sleep(5)
         similarities = item_similarity_df[selected_product]
         top_similar = similarities.drop(index=selected_product).sort_values(ascending=False).head(5)
 
         
-        st.write(f"Top 5 recommendations for {selected_product}:")
+        st.subheader("You may want to try these 5 products:")
         for i, (product, similarity) in enumerate(top_similar.items(), 1):
             st.write(f"{i}. {product} (Similarity: {similarity:.2f})")
-
