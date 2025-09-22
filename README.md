@@ -1,5 +1,5 @@
 # perfume-recommender-ai
-Recommender system using item-based collaborative filtering to recommend 5 perfumes you will like
+Recommender system using item-based collaborative filtering to recommend 5 perfumes you will like based on the ones you already love!
 
 Data was obtained from scraping >20k reviews and ~600 women fragrance products from ULTA website, using Requests and Selenium. (Scraping done in September 2025) 
 After data cleaning and exploratory data analysis to uncover rating/review trends, predictive model was built using item-based collaborative filtering with SVD. 
