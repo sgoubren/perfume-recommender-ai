@@ -1,4 +1,7 @@
 # perfume-recommender-ai
+
+Try it out here: https://perfume-recommender-ai.streamlit.app/
+
 Recommender system using item-based collaborative filtering to recommend 5 perfumes you will like based on the ones you already love!
 
 Data was obtained from scraping >20k reviews and ~600 women fragrance products from ULTA website, using Requests and Selenium. (Scraping done in September 2025) 
